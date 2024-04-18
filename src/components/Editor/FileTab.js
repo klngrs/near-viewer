@@ -1,6 +1,6 @@
 import { Nav } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import { useAccountId, useCache, useNear } from "near-social-vm";
+import VM from "near-social-vm";
 
 export const Filetype = {
   Widget: "widget",
@@ -37,9 +37,9 @@ export function FileTab(props) {
     code,
     updateSaved,
   } = props;
-  const cache = useCache();
-  const near = useNear();
-  const accountId = useAccountId();
+  const cache = VM.useCache();
+  const near = VM.useNear();
+  const accountId = VM.useAccountId();
   const [localCode, setLocalCode] = useState(null);
   const [chainCode, setChainCode] = useState(null);
   const [tabWidgetSrc, setTabWidgetSrc] = useState(null);

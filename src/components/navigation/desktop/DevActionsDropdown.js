@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Fork } from "../../icons/Fork";
 import { Code } from "../../icons/Code";
-import { useAccount } from "near-social-vm";
+import VM from 'near-social-vm';
 import { Diff } from "../../icons/Diff";
 
 const StyledDropdown = styled.div`
@@ -86,7 +86,7 @@ const StyledDropdown = styled.div`
 `;
 
 export function DevActionsDropdown(props) {
-  const account = useAccount();
+  const account = VM.useAccount();
 
   if (props.widgetSrc?.edit || props.widgetSrc?.view) {
     return (

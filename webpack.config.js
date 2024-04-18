@@ -54,8 +54,9 @@ module.exports = function (env) {
         },
         // Fix for using `yarn link "near-social-vm"`
         alias: {
-          react: path.resolve(__dirname, "./node_modules/react"),
-          "react-dom": path.resolve(__dirname, "./node_modules/react-dom"),
+          // react: path.resolve(__dirname, "./node_modules/react"),
+          // "react-dom": path.resolve(__dirname, "./node_modules/react-dom"),
+          'near-social-vm': path.resolve(__dirname, 'src', 'near-social-vm-federated.js'),
           "near-api-js": path.resolve(__dirname, "./node_modules/near-api-js"),
         },
       },
