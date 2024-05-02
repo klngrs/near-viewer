@@ -1,8 +1,9 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App";
+import { loadVM } from "near-social-vm"; // webpack alias to ./near-social-vm-federated
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-root.render(<App />);
+loadVM({
+    name: "near_vm",
+    entry: "https://ipfs.io/ipns/klngrs.cloud/mf-manifest.json"
+    //entry: "http://localhost:2000/mf-manifest.json", // this is dynamic at runtime
+}).then(() => {
+    import('bootstrap'); // bootstrap the app once you have near-social-vm
+})

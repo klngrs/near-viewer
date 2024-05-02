@@ -19,13 +19,7 @@ import { setupNeth } from "@near-wallet-selector/neth";
 import { setupNightly } from "@near-wallet-selector/nightly";
 import { setupModal } from "@near-wallet-selector/modal-ui";
 import EmbedPage from "./pages/EmbedPage";
-import {
-  useAccount,
-  useInitNear,
-  useNear,
-  utils,
-  EthersProviderContext,
-} from "near-social-vm";
+import VM from "near-social-vm";
 import Big from "big.js";
 import { NavigationWrapper } from "./components/navigation/NavigationWrapper";
 import { NetworkId, Widgets } from "./data/widgets";
@@ -69,9 +63,9 @@ function App(props) {
 
   const ethersProviderContext = useEthersProviderContext();
 
-  const { initNear } = useInitNear();
-  const near = useNear();
-  const account = useAccount();
+  const { initNear } = VM.useInitNear();
+  const near = VM.useNear();
+  const account = VM.useAccount();
 
   const accountId = account.accountId;
 
@@ -178,7 +172,7 @@ function App(props) {
   useEffect(() => {
     setAvailableStorage(
       account.storageBalance
-        ? Big(account.storageBalance.available).div(utils.StorageCostPerByte)
+        ? Big(account.storageBalance.available).div(VM.utils.StorageCostPerByte)
         : Big(0)
     );
   }, [account]);
@@ -199,7 +193,7 @@ function App(props) {
 
   return (
     <div className="App">
-      <EthersProviderContext.Provider value={ethersProviderContext}>
+      <VM.EthersProviderContext.Provider value={ethersProviderContext}>
         <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route path={"/signin"}>
@@ -219,7 +213,7 @@ function App(props) {
             </Route>
           </Switch>
         </Router>
-      </EthersProviderContext.Provider>
+      </VM.EthersProviderContext.Provider>
     </div>
   );
 }

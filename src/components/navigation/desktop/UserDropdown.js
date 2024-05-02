@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Widget, useNear, useAccount } from "near-social-vm";
+import VM from 'near-social-vm';
 import styled from "styled-components";
 import { User } from "../../icons/User";
 import { LogOut } from "../../icons/LogOut";
@@ -95,8 +95,8 @@ const StyledDropdown = styled.div`
 `;
 
 export function UserDropdown(props) {
-  const near = useNear();
-  const account = useAccount();
+  const near = VM.useNear();
+  const account = VM.useAccount();
 
   const withdrawStorage = useCallback(async () => {
     await near.contract.storage_withdraw({}, undefined, "1");
@@ -115,7 +115,7 @@ export function UserDropdown(props) {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <Widget
+          <VM.Widget
             src={props.widgets.profileImage}
             props={{
               accountId: account.accountId,
@@ -126,7 +126,7 @@ export function UserDropdown(props) {
           <div className="profile-info">
             {props.widgets.profileName && (
               <div className="profile-name">
-                <Widget src={props.widgets.profileName} />
+                <VM.Widget src={props.widgets.profileName} />
               </div>
             )}
             <div className="profile-username">{account.accountId}</div>

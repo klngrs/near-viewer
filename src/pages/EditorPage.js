@@ -4,13 +4,7 @@ import prettier, { check } from "prettier";
 import parserBabel from "prettier/parser-babel";
 import { useHistory, useParams } from "react-router-dom";
 import Editor, { useMonaco } from "@monaco-editor/react";
-import {
-  Widget,
-  useCache,
-  useNear,
-  CommitButton,
-  useAccountId,
-} from "near-social-vm";
+import VM from 'near-social-vm';
 import { Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
 import RenameModal from "../components/Editor/RenameModal";
 import OpenModal from "../components/Editor/OpenModal";
@@ -72,9 +66,9 @@ export default function EditorPage(props) {
   const [propsError, setPropsError] = useState(null);
   const [metadata, setMetadata] = useState(undefined);
   const [forkDetails, setForkDetails] = useState(undefined);
-  const near = useNear();
-  const cache = useCache();
-  const accountId = useAccountId();
+  const near = VM.useNear();
+  const cache = VM.useCache();
+  const accountId = VM.useAccountId();
 
   const [tab, setTab] = useState(Tab.Editor);
   const [layout, setLayoutState] = useState(
@@ -535,7 +529,7 @@ export default function EditorPage(props) {
   const widgetName = path?.name;
 
   const commitButton = (
-    <CommitButton
+    <VM.CommitButton
       className="btn btn-outline-primary"
       disabled={!widgetName}
       near={near}
@@ -549,7 +543,7 @@ export default function EditorPage(props) {
       }}
     >
       Save
-    </CommitButton>
+    </VM.CommitButton>
   );
 
   const widgetPath = `${accountId}/${path?.type}/${path?.name}`;
@@ -641,7 +635,7 @@ export default function EditorPage(props) {
         </Nav>
         {props.widgets.editorComponentSearch && (
           <div>
-            <Widget
+            <VM.Widget
               src={props.widgets.editorComponentSearch}
               props={useMemo(
                 () => ({
@@ -885,7 +879,7 @@ export default function EditorPage(props) {
                 }`}
               >
                 <div className="mb-3">
-                  <Widget
+                  <VM.Widget
                     src={props.widgets.widgetMetadataEditor}
                     key={`metadata-editor-${jpath}`}
                     props={useMemo(
@@ -912,7 +906,7 @@ export default function EditorPage(props) {
                 <div className="row">
                   <div className="position-relative">
                     {renderCode ? (
-                      <Widget
+                      <VM.Widget
                         key={`${previewKey}-${jpath}`}
                         config={widgetConfig}
                         code={renderCode}
@@ -933,7 +927,7 @@ export default function EditorPage(props) {
               <div className="container">
                 <div className="row">
                   <div className="position-relative">
-                    <Widget
+                    <VM.Widget
                       key={`metadata-${jpath}`}
                       src={props.widgets.widgetMetadata}
                       props={useMemo(

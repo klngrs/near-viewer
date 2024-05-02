@@ -7,7 +7,7 @@ import { Code } from "../../icons/Code";
 import { LogOut } from "../../icons/LogOut";
 import { Fork } from "../../icons/Fork";
 import { UserCircle } from "../../icons/UserCircle";
-import { Widget, useNear } from "near-social-vm";
+import VM from "near-social-vm";
 import { NavigationButton } from "../NavigationButton";
 import { SignInButton } from "../SignInButton";
 import { Link } from "react-router-dom";
@@ -155,7 +155,7 @@ const StyledMenu = styled.div`
 `;
 
 export function Menu(props) {
-  const near = useNear();
+  const near = VM.useNear();
   const withdrawStorage = useCallback(async () => {
     await near.contract.storage_withdraw({}, undefined, "1");
   }, [near]);
@@ -168,7 +168,7 @@ export function Menu(props) {
             to={`/${props.widgets.profilePage}?accountId=${props.signedAccountId}`}
             className="profile-link"
           >
-            <Widget
+            <VM.Widget
               src={props.widgets.profileImage}
               props={{
                 accountId: props.signedAccountId,
@@ -178,7 +178,7 @@ export function Menu(props) {
             />
             {props.widgets.profileName && (
               <div className="profile-name">
-                <Widget src={props.widgets.profileName} />
+                <VM.Widget src={props.widgets.profileName} />
               </div>
             )}
             <div className="profile-username">{props.signedAccountId}</div>

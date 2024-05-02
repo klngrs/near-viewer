@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Widget } from "near-social-vm";
+import VM from 'near-social-vm';
 import { useParams } from "react-router-dom";
 import { useQuery } from "../hooks/useQuery";
 import { useHashRouterLegacy } from "../hooks/useHashRouterLegacy";
@@ -23,7 +23,7 @@ export default function EmbedPage(props) {
 
   return (
     <div className="d-inline-block position-relative overflow-hidden">
-      <Widget key={src} src={src} props={widgetProps} />{" "}
+      <VM.Widget key={src} src={src} props={widgetProps} />{" "}
     </div>
   );
 }

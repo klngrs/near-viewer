@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Widget } from "near-social-vm";
+import VM from 'near-social-vm';
 import { useHistory } from "react-router-dom";
 import * as nearAPI from "near-api-js";
 import { NetworkId } from "../data/widgets";
@@ -59,7 +59,7 @@ export default function SignInPage(props) {
         >
           <h3>Sign in as</h3>
           <div className="mt-2">
-            <Widget
+            <VM.Widget
               src={props.widgets.profileInlineBlock}
               props={{ accountId: params.accountId }}
             />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Widget } from "near-social-vm";
+import VM from 'near-social-vm';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -25,7 +25,7 @@ export function StarButton(props) {
   if (widgetSrc && props.widgets.starButton) {
     return (
       <Wrapper>
-        <Widget
+        <VM.Widget
           src={props.widgets.starButton}
           props={{
             item: {

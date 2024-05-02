@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { useAccount } from "near-social-vm";
+import VM from 'near-social-vm';
 import { QRCodeSVG } from "qrcode.react";
 import { getSocialKeyPair } from "../../data/near";
 
 export default function MobileQRModal(props) {
-  const account = useAccount();
+  const account = VM.useAccount();
   const onHide = props.onHide;
   const show = props.show;
 

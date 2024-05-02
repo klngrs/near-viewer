@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { Widget, useAccount } from "near-social-vm";
+import VM from 'near-social-vm';
 
 export default function PretendModal(props) {
-  const account = useAccount();
+  const account = VM.useAccount();
   const onHide = props.onHide;
   const show = props.show;
 
@@ -32,7 +32,7 @@ export default function PretendModal(props) {
           />
         </div>
         <div className="mt-2">
-          <Widget
+          <VM.Widget
             src={props.widgets.profileInlineBlock}
             props={{ accountId }}
           />
