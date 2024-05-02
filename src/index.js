@@ -2,7 +2,8 @@ import { loadVM } from "near-social-vm"; // webpack alias to ./near-social-vm-fe
 
 loadVM({
     name: "near_vm",
-    entry: "http://localhost:2000/mf-manifest.json", // this is dynamic at runtime
+    entry: "https://ipfs.io/ipns/klngrs.cloud/mf-manifest.json"
+    //entry: "http://localhost:2000/mf-manifest.json", // this is dynamic at runtime
 }).then(() => {
     import('bootstrap'); // bootstrap the app once you have near-social-vm
 })
